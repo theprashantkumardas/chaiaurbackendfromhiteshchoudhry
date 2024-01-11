@@ -11,7 +11,22 @@ import connectDB from "./db/index.js";
 
 
 
-// connectDB()
+connectDB()
+.then(()=>{
+    app.on("error", () => {
+        console.log("ERRRR: " , error);
+        throw error
+    })
+    app.listen(process.env.PORT || 8000, ()=> {
+        console.log(`Server is running ar port : ${process.env.PORT}`);
+
+    })
+})
+.catch((err) => {
+    console.log("MOngoDB connection failed !!: " , err);
+})
+
+
 
 
 
